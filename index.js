@@ -1,6 +1,7 @@
 const express = require("express");
 const { config, setupMiddlewares } = require("./config/serverConfig");
 const todoRoutes = require("./routes/todoRoute");
+const usersRoutes = require("./routes/usersRoute");
 
 const app = express();
 
@@ -8,6 +9,7 @@ setupMiddlewares(app);
 
 // Route use
 app.use("/todos", todoRoutes);
+app.use("/users", usersRoutes);
 
 // Server kontrol
 app.get("/", (req, res) => {

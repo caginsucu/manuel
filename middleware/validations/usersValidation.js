@@ -1,4 +1,4 @@
-const { body, param, validationResult } = require("express-validator");
+const { body } = require("express-validator");
 const { validateRequest } = require("../../utils/validation");
 
 const validateRegister = [
@@ -22,6 +22,17 @@ const validateRegister = [
   //     }
   //     return true;
   //   }),
+  validateRequest,
 ];
 
-module.exports = { validateRegister };
+const validateLogin = [
+  body("email")
+    .notEmpty()
+    .withMessage("E-posta zorunludur.")
+    .isEmail()
+    .withMessage("Geçerli bir e-posta adresi giriniz."),
+
+  body("password").notEmpty().withMessage("Şifre zorunludur."),
+];
+
+module.exports = { validateRegister, validateLogin };

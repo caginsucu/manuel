@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "5f302762-68c9-47c0-a331-52ce9b864bd6",
+    "name": "cagin",
+    "email": "cagins@example.com",
+    "password": "$2b$10$y4jHpTCYcjGV08/91hCVleH7NXeEhD3WkTz8LNSuPDrcrFHtze8ee",
+    "createdAt": "2025-02-21T17:45:20.435Z"
+  }
+]

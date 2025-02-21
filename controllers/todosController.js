@@ -23,6 +23,7 @@ const addTodo = (req, res) => {
     category: "genel", // 📌 Kategori (iş, kişisel, alışveriş vb.)
     dueDate: null, // 📌 Son tamamlama tarihi (isteğe bağlı)
     description: "", // 📌 Açıklama (isteğe bağlı)
+    userId: req.user.id,
   };
 
   todos.push(newTodo);

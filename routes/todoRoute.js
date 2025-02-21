@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const {
-  validateTodo,
+  validateCreateTodo,
   validateId,
+  validateUpdateTodo,
 } = require("../middleware/validations/todosValidation");
+const verifyToken = require("../middleware/authMiddleware");
 
 const {
   getTodos,
@@ -14,8 +16,8 @@ const {
 
 // CRUD İşlemleri
 router.get("/", getTodos);
-router.post("/", validateTodo, addTodo);
-router.put("/:id", validateId, updateTodo);
+router.post("/", verifyToken, validateCreateTodo, addTodo);
+router.put("/:id", validateUpdateTodo, validateId, updateTodo);
 router.delete("/:id", validateId, deleteTodo);
 
 module.exports = router;

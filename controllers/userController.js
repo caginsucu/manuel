@@ -1,7 +1,10 @@
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { readUsers, writeUsers } = require("../models/userModel");
 const { successResponse, errorResponse } = require("../utils/responseHelper");
+
+const SECRET_KEY = "gizli_key";
 
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -34,6 +37,31 @@ const registerUser = async (req, res) => {
   );
 };
 
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  const users = readUsers();
+
+  // Kullanıcıyı bul
+  const user = users.find((user) => user.email === email);
+  if (!user) {
+    return errorResponse(res, "Geçersiz e-posta veya şifre!", 400);
+  }
+
+  // Şifreyi karşılaştır
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    return errorResponse(res, "Geçersiz e-posta veya şifre!", 400);
+  }
+
+  // JWT Token oluştur
+  const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
+    expiresIn: "1h",
+  });
+
+  return successResponse(res, "Giriş başarılı!", { token, user }, 200);
+};
+
 module.exports = {
   registerUser,
+  loginUser,
 };

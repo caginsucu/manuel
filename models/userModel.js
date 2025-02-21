@@ -19,6 +19,6 @@ const writeUsers = (data) => {
 };
 
 module.exports = {
-  readTodos,
+  readUsers,
   writeUsers,
 };
