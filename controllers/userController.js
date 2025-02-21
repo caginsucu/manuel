@@ -29,10 +29,13 @@ const registerUser = async (req, res) => {
   users.push(newUser);
   writeUsers(users);
 
+  const userResponse = { ...newUser };
+  delete userResponse.password;
+
   return successResponse(
     res,
     "Kullanıcı başarı ile oluşturuldu!",
-    newUser,
+    userResponse,
     201
   );
 };
