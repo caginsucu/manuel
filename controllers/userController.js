@@ -64,7 +64,31 @@ const loginUser = async (req, res) => {
   return successResponse(res, "Giriş başarılı!", { token, user }, 200);
 };
 
+const deleteUser = async (req, res) => {
+  const { password } = req.body;
+  const users = readUsers();
+  const userIndex = users.findIndex((user) => user.id === req.user.id);
+
+  if (userIndex === -1) {
+    return errorResponse(res, "Kullanıcı bulunamadı!", 404);
+  }
+
+  const user = users[userIndex];
+
+  // 📌 Şifre doğrulaması yap
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    return errorResponse(res, "Şifre yanlış!", 400);
+  }
+
+  users.splice(userIndex, 1);
+  writeUsers(users);
+
+  return successResponse(res, "Kullanıcı başarıyla silindi!", null);
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  deleteUser,
 };

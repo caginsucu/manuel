@@ -1,16 +1,1 @@
-[
-  {
-    "id": "5f302762-68c9-47c0-a331-52ce9b864bd6",
-    "name": "cagin",
-    "email": "cagins@example.com",
-    "password": "$2b$10$y4jHpTCYcjGV08/91hCVleH7NXeEhD3WkTz8LNSuPDrcrFHtze8ee",
-    "createdAt": "2025-02-21T17:45:20.435Z"
-  },
-  {
-    "id": "c7278ce6-2ccf-445a-840f-c190ffaeeb2e",
-    "name": "ahmet",
-    "email": "ahmets@example.com",
-    "password": "$2b$10$BRznbbl9R44GJuHux59RrOMHNjXyL0U0Vy5KbCMluYJ/x6SLTxtsi",
-    "createdAt": "2025-02-21T18:13:51.618Z"
-  }
-]
+[]

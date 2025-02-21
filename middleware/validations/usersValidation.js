@@ -35,4 +35,9 @@ const validateLogin = [
   body("password").notEmpty().withMessage("Şifre zorunludur."),
 ];
 
-module.exports = { validateRegister, validateLogin };
+const validateDeleteUser = [
+  body("password").notEmpty().withMessage("Şifre zorunludur!"),
+  validateRequest,
+];
+
+module.exports = { validateRegister, validateLogin, validateDeleteUser };
